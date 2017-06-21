@@ -1,6 +1,13 @@
 ﻿bin/
+
 obj/
+
 .vs/
+
 Properties/
+
 *.csproj
-*sln
+
+*.sln
+
+*.suo
