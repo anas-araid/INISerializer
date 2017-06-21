@@ -8,6 +8,16 @@ namespace INISerializer
 {
     public class INISerializer
     {
-
+		Object obj;
+		public INISerializer(){}
+		public string SerializeObject(Object obj)
+		{
+			this.obj = obj;
+			return (obj == null) ? null : doTask();
+		}
+		private string doTask()
+		{
+			
+		}
     }
 }
