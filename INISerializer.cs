@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace INISerializer
 {
@@ -51,15 +52,30 @@ namespace INISerializer
         private static object buildObject(string path)
         {
             string line=String.Empty;
+            string section = String.Empty;
+            string pattern = @"\[(.*?)\]";
             int fileCount = File.ReadLines(path).Count();
+
+
             StreamReader file = new StreamReader(path);
             for (int i = 0; i < fileCount; i++)
             {
                 line = file.ReadLine();
-				Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-				MatchCollection matches = rgx.Matches(line);
-				if (matches.Count > 0)
-				
+				        Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+				        MatchCollection matches = rgx.Matches(line);
+                if (matches.Count > 0)
+                {
+                    section = matches[0].ToString();
+                    section = section.Replace("[", string.Empty);
+                    section = section.Replace("]", string.Empty);
+                    /*
+                    int i = line.IndexOf('>');
+                    if (i >= 0) proj = line.Substring(i + 1);
+                    codice = lastLine.Replace("#", string.Empty);
+                    addEpsgTocmb(codice, EPSG, proj);
+                     * */
+                }
+
             }
             return null;
         }
